@@ -1,15 +1,47 @@
-// api constants
+// ============================================
+// API constants
+// ============================================
 export const GITHUB_API_BASE_URL = "https://api.github.com";
 
-// search constants
+// ============================================
+// search & pagination constants
+// ============================================
 export const SEARCH_DEBOUNCE_MS = 500;
 export const ITEMS_PER_PAGE = 30;
 export const MAX_RESULTS = 1000; // GitHub API limit
 
-// rate limiting
-export const RATE_LIMIT_UNAUTHENTICATED = 10; // requests per minute for search
+// ============================================
+// cache time constants (in milliseconds)
+// ============================================
+export const CACHE_TIME = {
+  ONE_MINUTE: 60 * 1000,
+  FIVE_MINUTES: 5 * 60 * 1000,
+  TEN_MINUTES: 10 * 60 * 1000,
+  THIRTY_MINUTES: 30 * 60 * 1000,
+  ONE_HOUR: 60 * 60 * 1000,
+} as const;
 
-// language to color mapping (for badges)
+// default query cache settings
+export const DEFAULT_STALE_TIME = CACHE_TIME.FIVE_MINUTES;
+export const DEFAULT_GC_TIME = CACHE_TIME.TEN_MINUTES;
+export const LANGUAGES_STALE_TIME = CACHE_TIME.THIRTY_MINUTES;
+export const LANGUAGES_GC_TIME = CACHE_TIME.ONE_HOUR;
+
+// ============================================
+// UI display constants
+// ============================================
+export const MAX_TOPICS_DISPLAY = 5;
+export const MAX_LANGUAGES_DISPLAY = 5;
+export const FORKS_TO_DISPLAY = 3;
+
+// ============================================
+// intersectionObserver constants
+// ============================================
+export const INTERSECTION_ROOT_MARGIN = "100px";
+
+// ============================================
+// language colors (for badges)
+// ============================================
 export const LANGUAGE_COLORS: Record<string, string> = {
   JavaScript: "#f1e05a",
   TypeScript: "#3178c6",
@@ -40,45 +72,5 @@ export const LANGUAGE_COLORS: Record<string, string> = {
   Clojure: "#db5855",
   Dockerfile: "#384d54",
   Makefile: "#427819",
-  default: "#db5855",
-};
-
-// file type to language mapping
-export const FILE_EXTENSION_TO_LANGUAGE: Record<string, string> = {
-  js: "JavaScript",
-  jsx: "JavaScript",
-  ts: "TypeScript",
-  tsx: "TypeScript",
-  py: "Python",
-  java: "Java",
-  cpp: "C++",
-  cc: "C++",
-  c: "C",
-  cs: "C#",
-  rb: "Ruby",
-  go: "Go",
-  rs: "Rust",
-  swift: "Swift",
-  kt: "Kotlin",
-  php: "PHP",
-  html: "HTML",
-  htm: "HTML",
-  css: "CSS",
-  scss: "SCSS",
-  sass: "SCSS",
-  vue: "Vue",
-  sh: "Shell",
-  bash: "Shell",
-  dart: "Dart",
-  scala: "Scala",
-  r: "R",
-  ipynb: "Jupyter",
-  hs: "Haskell",
-  lua: "Lua",
-  pl: "Perl",
-  ex: "Elixir",
-  exs: "Elixir",
-  clj: "Clojure",
-  dockerfile: "Dockerfile",
-  makefile: "Makefile",
+  default: "#384d54",
 };

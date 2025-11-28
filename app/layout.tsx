@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
-import { QueryProvider } from "@/components/providers/QueryProvider";
+import { QueryProvider } from "@/providers/QueryProvider";
+import { MuiProvider } from "@/providers/MuiProvider";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -34,11 +35,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+        style={{
+          fontFamily: "var(--font-space-grotesk), system-ui, sans-serif",
+          WebkitFontSmoothing: "antialiased",
+          MozOsxFontSmoothing: "grayscale",
+        }}
       >
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <MuiProvider>{children}</MuiProvider>
+        </QueryProvider>
       </body>
     </html>
   );

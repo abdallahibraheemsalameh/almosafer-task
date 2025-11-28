@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GitHub Explorer
+
+A GitHub search application built with React 19, Next.js 16, and TypeScript.
+
+## Features
+
+- 🔍 **Search GitHub** - Search for repositories or users
+- 🔄 **Infinite Scroll** - Load more results automatically
+- 📊 **Repository Details** - View languages, stars, forks, and recent forkers
+- 👤 **User Cards** - View user avatars and profile links
+- ⚡ **Debounced Search** - Optimized API calls with 500ms debounce
+- 💾 **Cached Results** - 5-minute cache to reduce API requests
+- ⌨️ **Keyboard Shortcut** - `Cmd/Ctrl + K` to focus search
+
+## Tech Stack
+
+- **Next.js 16** (App Router)
+- **React 19**
+- **TypeScript 5**
+- **MUI 7** (Material UI)
+- **TanStack Query** (data fetching & caching)
+- **Jest + Testing Library** (unit tests)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command                 | Description             |
+| ----------------------- | ----------------------- |
+| `npm run dev`           | Start dev server        |
+| `npm run build`         | Build for production    |
+| `npm test`              | Run tests               |
+| `npm run test:coverage` | Run tests with coverage |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+src/
+├── components/       # React components (each with styles & tests)
+├── hooks/            # Custom hooks (useDebounce, useGitHubSearch)
+├── lib/              # API service & constants
+├── providers/        # MUI & Query providers
+├── types/            # TypeScript types
+└── utils/            # Utility functions
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Testing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm test
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Tests cover: SearchBar, SearchTypeToggle, UserCard, RepositoryCard, LanguageBadge, EmptyState, ErrorState, LoadingState, ResultsHeader, useDebounce hook, and API service.

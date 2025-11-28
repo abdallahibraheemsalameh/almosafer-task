@@ -1,0 +1,2 @@
+export { SearchTypeToggle } from "./SearchTypeToggle";
+

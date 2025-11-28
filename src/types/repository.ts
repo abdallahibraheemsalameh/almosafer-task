@@ -45,6 +45,7 @@ interface RepositoryWithDetails extends GitHubRepository {
   languages?: RepositoryLanguages;
   recentForks?: GitHubFork[];
 }
+
 export type {
   GitHubRepository,
   RepositorySearchResponse,

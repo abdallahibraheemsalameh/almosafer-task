@@ -2,6 +2,13 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { githubApi } from "@/lib/api";
+import {
+  LANGUAGES_STALE_TIME,
+  LANGUAGES_GC_TIME,
+  DEFAULT_STALE_TIME,
+  DEFAULT_GC_TIME,
+  FORKS_TO_DISPLAY,
+} from "@/lib/constants";
 
 interface UseRepositoryLanguagesOptions {
   owner: string;
@@ -23,8 +30,8 @@ const useRepositoryLanguages = ({
     queryKey: ["repository-languages", owner, repo],
     queryFn: () => githubApi.getRepositoryLanguages(owner, repo),
     enabled: enabled && !!owner && !!repo,
-    staleTime: 30 * 60 * 1000, // cache for 30 minutes
-    gcTime: 60 * 60 * 1000, // garbage collect after 1 hour
+    staleTime: LANGUAGES_STALE_TIME,
+    gcTime: LANGUAGES_GC_TIME,
   });
 };
 
@@ -35,10 +42,10 @@ const useRepositoryForks = ({
 }: UseRepositoryForksOptions) => {
   return useQuery({
     queryKey: ["repository-forks", owner, repo],
-    queryFn: () => githubApi.getRepositoryForks(owner, repo, 3),
+    queryFn: () => githubApi.getRepositoryForks(owner, repo, FORKS_TO_DISPLAY),
     enabled: enabled && !!owner && !!repo,
-    staleTime: 5 * 60 * 1000, // cache for 5 minutes
-    gcTime: 10 * 60 * 1000, // garbage collect after 10 minutes
+    staleTime: DEFAULT_STALE_TIME,
+    gcTime: DEFAULT_GC_TIME,
   });
 };
 export { useRepositoryForks, useRepositoryLanguages };

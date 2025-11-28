@@ -7,13 +7,23 @@ afterEach(() => {
 });
 
 // Mock IntersectionObserver
-const mockIntersectionObserver = jest.fn();
-mockIntersectionObserver.mockReturnValue({
-  observe: () => null,
-  unobserve: () => null,
-  disconnect: () => null,
-});
-window.IntersectionObserver = mockIntersectionObserver;
+class MockIntersectionObserver {
+  readonly root: Element | null = null;
+  readonly rootMargin: string = "";
+  readonly thresholds: ReadonlyArray<number> = [];
+
+  constructor(callback: IntersectionObserverCallback) {
+    // Store callback for potential use
+  }
+
+  observe = jest.fn();
+  unobserve = jest.fn();
+  disconnect = jest.fn();
+  takeRecords = jest.fn().mockReturnValue([]);
+}
+
+window.IntersectionObserver =
+  MockIntersectionObserver as unknown as typeof IntersectionObserver;
 
 // Mock window.matchMedia
 Object.defineProperty(window, "matchMedia", {
