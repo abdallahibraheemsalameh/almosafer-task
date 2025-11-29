@@ -22,6 +22,7 @@ const InfiniteScroll = ({
   threshold = 0.5,
 }: InfiniteScrollProps) => {
   const hasTriggered = useRef(false);
+  const prevInView = useRef(false);
 
   const { ref: inViewRef, inView } = useInView({
     threshold,
@@ -34,13 +35,18 @@ const InfiniteScroll = ({
     }
   }, [isLoading]);
 
-  // reset the trigger when onLoadMore or hasMore changes (e.g., when search type changes)
   useEffect(() => {
     hasTriggered.current = false;
-  }, [onLoadMore, hasMore]);
+    // set prevInView to current inView to prevent immediate triggering if already scrolled to bottom
+    prevInView.current = inView;
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only want to run this effect when onLoadMore changes
+  }, [onLoadMore]);
 
   useEffect(() => {
-    if (inView && hasMore && !isLoading && !hasTriggered.current) {
+    const justCameIntoView = inView && !prevInView.current;
+    prevInView.current = inView;
+
+    if (justCameIntoView && hasMore && !isLoading && !hasTriggered.current) {
       hasTriggered.current = true;
       onLoadMore();
     }
