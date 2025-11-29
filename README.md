@@ -1,4 +1,5 @@
 # GitHub Explorer
+🔗 **Live Demo:** [https://almosafer-task.vercel.app/](https://almosafer-task.vercel.app/)
 
 A GitHub search application built with React 19, Next.js 16, and TypeScript.
 
@@ -61,3 +62,12 @@ npm test
 ```
 
 Tests cover: SearchBar, SearchTypeToggle, UserCard, RepositoryCard, LanguageBadge, EmptyState, ErrorState, LoadingState, ResultsHeader, useDebounce hook, and API service.
+
+## Performance
+ ### Mobile
+<img width="1905" height="910" alt="Screenshot 2025-11-28 223500" src="https://github.com/user-attachments/assets/9f475526-4b58-4b7e-9fbd-0a5bbae6b3d3" />
+
+### Desktop
+<img width="1896" height="911" alt="Screenshot 2025-11-28 223236" src="https://github.com/user-attachments/assets/5f9dea54-4777-48b7-ae5a-2ddcd1b76b40" />
+
+
