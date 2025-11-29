@@ -25,6 +25,11 @@ A GitHub search application built with React 19, Next.js 16, and TypeScript.
 ## Getting Started
 
 ```bash
+# Clone the Repo
+git clone https://github.com/abdallahibraheemsalameh/almosafer-task.git
+
+cd almosafer-task
+
 # Install dependencies
 npm install
 
